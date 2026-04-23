@@ -1,0 +1,124 @@
+# MEMORY-CORE — Project Essentials Template
+
+**Propósito:** Compressed context for Claude in development sessions. Load fast, no bloat.
+
+**Full history:** See `docs_optimized/MEMORY.md` (archive)
+
+---
+
+## 📊 SCHEMA / DATA MODEL (Current)
+
+### Collections/Tables
+
+```
+[TABLE_1]/{id}
+├── field_name (type)
+├── field_name (type)
+├── relationship: [TABLE_2]/{id}
+└── timestamps: createdAt, updatedAt
+
+[TABLE_2]/{id}
+├── field_name (type)
+├── nested_array[]
+├── enum_field: ['value1', 'value2', 'value3']
+└── metadata
+
+[TABLE_3]/{id}
+├── foreign_key: [TABLE_1]/{id}
+├── status (active|inactive|pending)
+└── data
+```
+
+**Key relationships:**
+- [TABLE_1] ←→ [TABLE_2]: [1:many / many:many]
+- [TABLE_3] depends on [TABLE_1]: [relationship type]
+
+---
+
+## 🔗 KEY ENDPOINTS / API
+
+```
+POST /api/endpoint1
+  Input: {field1, field2}
+  Output: {response}
+  Auth: [User/Admin/Public]
+  
+GET /api/endpoint2?param=value
+  Purpose: [What it does]
+  Returns: [Data structure]
+  Auth: [User/Admin/Public]
+```
+
+**External services:**
+- Service A: `https://service-a.com`
+- Service B: Webhook at `/webhooks/service-b`
+
+---
+
+## ⚡ CRITICAL PATTERNS & GOTCHAS
+
+### Pattern: [Pattern Name]
+```javascript
+// Code example of the pattern
+// Why it matters
+```
+
+### Gotcha: [Gotcha Name]
+```
+Problem: [What goes wrong]
+Root cause: [Why it happens]
+Fix: [How to prevent/fix]
+```
+
+### Security: [Security consideration]
+```
+What to check: [Items]
+Never do: [Anti-patterns]
+Always do: [Best practices]
+```
+
+---
+
+## 🐛 BUGS RESOLVED (Don't re-introduce)
+
+| ID | Problem | Root Cause | Fix | Date |
+|----|---------|-----------|-----|------|
+| B001 | [Brief description] | [Cause] | [Solution] | YYYY-MM-DD |
+| B002 | [Brief description] | [Cause] | [Solution] | YYYY-MM-DD |
+
+---
+
+## 📈 CURRENT STATE
+
+**Last change:** YYYY-MM-DD ([What changed])
+
+**Blockers:** None in production
+
+**Technical Debt:**
+- [Debt item 1] — Priority: [High/Medium/Low]
+- [Debt item 2] — Priority: [High/Medium/Low]
+
+---
+
+## 🎯 QUICK REFERENCE
+
+**Need schema?**
+→ See `SCHEMA / DATA MODEL` above
+
+**Need endpoints?**
+→ See `KEY ENDPOINTS / API` above
+
+**Need patterns?**
+→ See `CRITICAL PATTERNS & GOTCHAS` above
+
+**Need historical context?**
+→ `docs_optimized/MEMORY.md` (full, detailed)
+→ `docs_optimized/SESSION-DIGEST.md` (recent sessions)
+→ `docs_optimized/session-log-*.md` (by date)
+
+---
+
+**File size:** ~4-5 KB (~900 tokens)
+**Load:** Auto in Claude Code sessions
+**Update:** When schema/endpoints/patterns change
+**Format:** Markdown (GitHub + Claude readable)

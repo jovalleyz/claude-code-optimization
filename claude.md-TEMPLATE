@@ -1,0 +1,233 @@
+# PROJECT_NAME — Claude Context Template
+
+**Última actualización:** YYYY-MM-DD | **Version:** 1.0 | **Status:** Development/Production
+
+---
+
+## 🏗️ STACK
+
+- **Frontend:** [React 18 + Vite / Next.js / Vue / etc]
+- **Backend:** [Firebase / Node.js / Python / etc]
+- **Database:** [Firestore / PostgreSQL / MongoDB / etc]
+- **AI/LLM:** [Gemini / Claude API / OpenAI / etc]
+- **Hosting:** [Vercel / Firebase / AWS / etc]
+- **Auth:** [Firebase Auth / NextAuth / JWT / etc]
+- **Build:** [Vite / ESBuild / Webpack / etc]
+
+---
+
+## 📊 DATABASE SCHEMA (Current)
+
+### Main Collections/Tables
+
+```
+[COLLECTION_1]/{id}
+├── field1, field2
+├── relationship to [COLLECTION_2]
+└── timestamps
+
+[COLLECTION_2]/{id}
+├── field1, field2
+├── nested_array[]
+└── status (enum values)
+
+[COLLECTION_3]/{id}
+├── field1
+└── metadata
+```
+
+**Key relationships:**
+- [COLLECTION_1] ←→ [COLLECTION_2] (1:many / many:many)
+- [COLLECTION_3] depends on [COLLECTION_1]
+
+---
+
+## 🔗 KEY ENDPOINTS / FUNCTIONS (API Routes)
+
+| Endpoint | Method | Purpose | Auth |
+|----------|--------|---------|------|
+| `/api/endpoint1` | POST | Description | User/Admin |
+| `/api/endpoint2` | GET | Description | Public/User |
+| `function1()` | - | Core logic | - |
+
+**External APIs/Services:**
+- Service A: Key `[MASKED]`, Rate limit: X/min
+- Service B: Webhook at `/webhooks/service-b`
+
+---
+
+## 🚨 CRITICAL FILES (Edit con cuidado)
+
+| File | Lines | Risk | Reason |
+|------|-------|------|--------|
+| `App.jsx / main.jsx` | XXX | 🔴 | Auth/state management hub |
+| `db.config.js / firebase.js` | XXX | 🔴 | Database/API configuration |
+| `.env.example` | XXX | 🔴 | Secrets template |
+| `[Critical business logic file]` | XXX | 🟡 | [Reason] |
+
+---
+
+## 📋 CODE PATTERNS & CONVENTIONS
+
+### Naming Conventions
+```javascript
+// Components: PascalCase
+UserProfile.jsx
+
+// Functions/hooks: camelCase
+getUserData()
+useUserData()
+
+// Constants: UPPER_SNAKE_CASE
+MAX_ITEMS = 50
+API_TIMEOUT = 5000
+```
+
+### Common Patterns
+```javascript
+// Pattern 1: Data fetching
+const [data, setData] = useState(null);
+useEffect(() => {
+  fetchData().then(setData);
+}, [dependencies]);
+
+// Pattern 2: Database queries
+const query = collection(db, 'items')
+  .where('userId', '==', currentUserId)
+  .limit(20);
+
+// Pattern 3: Error handling
+try {
+  // operation
+} catch(error) {
+  if (error.code === 'permission-denied') {
+    // handle auth error
+  }
+}
+```
+
+---
+
+## 🔒 SECURITY NOTES
+
+**Critical security rules:**
+1. [Rule 1] - [Explanation]
+2. [Rule 2] - [Explanation]
+3. [Rule 3] - [Explanation]
+
+**Authentication flow:**
+- User logs in → [system response]
+- Token stored in [location]
+- Token refresh on [event/timer]
+
+**Environment secrets:**
+- `[SECRET_1]` - Used for [service]
+- `[SECRET_2]` - Used for [service]
+- Never commit `.env` files
+
+---
+
+## 🐛 KNOWN BUGS / GOTCHAS (To avoid re-introducing)
+
+| ID | Problem | Root Cause | Fix | Status |
+|----|---------|-----------|-----|--------|
+| BUG-001 | [Description] | [Cause] | [Solution] | ✅ Fixed |
+| BUG-002 | [Description] | [Cause] | [Solution] | 🔄 Monitoring |
+
+---
+
+## 📈 PROJECT STATE
+
+**Current version:** X.X.X
+
+**What's working:**
+- ✅ [Feature 1]
+- ✅ [Feature 2]
+- ✅ [Feature 3]
+
+**Known issues:**
+- 🟡 [Issue]: [Workaround available]
+- 🔴 [Blocker]: [Status]
+
+**Technical debt:**
+- [Debt item 1] - Priority: Medium
+- [Debt item 2] - Priority: Low
+
+---
+
+## 📋 NEXT STEPS / ROADMAP
+
+**In progress:**
+- 🔄 [Task 1]
+- 🔄 [Task 2]
+
+**Planned:**
+- 📋 [Feature A]
+- 📋 [Feature B]
+- 📋 [Performance improvement X]
+
+---
+
+## 🎯 TIPS FOR CLAUDE SESSIONS
+
+**How to ask questions:**
+```
+"I need to [specific task].
+Stack: [tech stack].
+See MEMORY-CORE.md for full schema.
+Where do I touch?"
+```
+
+**When to compact:**
+- After completing a feature
+- Before starting high-impact task
+- When context > 120K tokens
+
+**For more context:**
+- Schema details: Check `MEMORY-CORE.md`
+- Session history: Check `docs_optimized/SESSION-DIGEST.md`
+- Specific bugs: Check `docs_optimized/session-log-*.md`
+
+---
+
+## 🚀 TOKEN OPTIMIZATION (This file)
+
+This claude.md replaces ~40KB of context with ~2-3KB.
+
+**How it saves tokens:**
+1. Auto-load on Claude session start
+2. Caching on session 2+ (-40-60%)
+3. File view ranges: read only needed lines (-20-30%)
+4. `/compact` after subtask (-15-25%)
+
+**Target:** 65-75% token reduction per session
+
+---
+
+## 📁 FOLDER STRUCTURE
+
+```
+project-name/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── services/
+│   ├── utils/
+│   └── App.jsx
+├── public/
+├── docs_optimized/          ← Reference docs (don't load)
+│   ├── session-log-*.md
+│   ├── SESSION-DIGEST.md
+│   └── MEMORY.md
+├── .env.example
+├── package.json
+├── claude.md                ← This file (auto-load)
+├── MEMORY-CORE.md          ← Essentials (auto-load)
+└── .claudeignore           ← Claude ignores these files
+```
+
+---
+
+**Repo:** [Link] | **Deployed:** [Link] | **Status:** [Active/Archive]
+
